@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    组件通信：父传子props,ref 子传父$emit,ref 同级先传给公有的父级，再向下传递
+        provide,inject  eventBus  设置全局属性main.js 里面 给vue的原型挂载一个属性
+        storage   vuex 
+
+    页面通信：本地存储，url?key=value  path/:id 
+
+    双向绑定
+    虚拟dom
+    设计思想（设计模式）
+    个别有特点的语法的使用: $set $nextTick
+
+
+
+
+
+    <div id="app" :key="index||item.id"></div>
+    <script src="./vue.2.0.js"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app', // document.getElementById('app')
+            data(){
+                return {
+                    msg: '这个是自制的vue.js框架',
+                    content: ''
+                }
+            },
+            /* data:{
+
+            } */
+            methods: {
+                setContent(){
+                    vm.data.content = this.value;
+
+                    console.log(vm.data.content, this.value);
+                }
+            },
+            render(h) {
+                return h('div',{},[
+                    h('p',{class:"box",title:"123"},this.data.msg),
+                    h('p',{},this.data.content),
+                    h('input',{type:"text"},'',{onblur: this.methods.setContent})
+                ])
+            },
+        })
+    </script>
+
+</body>
+</html>
